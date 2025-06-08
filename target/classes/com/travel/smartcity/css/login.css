@@ -1,0 +1,6 @@
+.login-root {
+    -fx-background-image: url("/com/travel/smartcity/images/city-background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}

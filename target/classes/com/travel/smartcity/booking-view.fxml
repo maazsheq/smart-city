@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
+<!--            xmlns:fx="http://javafx.com/fxml"-->
+<!--            fx:controller="com.travel.smartcity.BookingView"-->
+<!--            prefHeight="400.0" prefWidth="600.0">-->
+
+<!--</AnchorPane>-->
+
+
+<VBox fx:id="vBoxBooking"
+      spacing="15" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.travel.smartcity.controller.BookingController">
+<Label text="Book Your Stay" />
+<TextField fx:id="placeField" promptText="Place Name" />
+<DatePicker fx:id="datePicker" />
+<Button text="Confirm Booking" onAction="#handleBooking" />
+    <Button text="Back to Dasboard" layoutX="450" layoutY="330"
+            onAction="#goToDashboard" />
+</VBox>

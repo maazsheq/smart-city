@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/20"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.travel.smartcity.controller.PlaceManagementController"
+            prefWidth="800" prefHeight="600">
+
+    <!-- Top: Title -->
+    <top>
+        <Label text="Manage Places (Admin)"
+               style="-fx-font-size: 24px;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </Label>
+    </top>
+
+    <!-- Center: Table and Form in a VBox -->
+    <center>
+        <VBox spacing="15">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <!-- TableView to show all places -->
+            <TableView fx:id="placeTable" prefHeight="300">
+                <columns>
+                    <TableColumn fx:id="colId"      text="ID"      prefWidth="50"/>
+                    <TableColumn fx:id="colName"    text="Name"    prefWidth="200"/>
+                    <TableColumn fx:id="colType"    text="Type"    prefWidth="150"/>
+                    <TableColumn fx:id="colAddress" text="Address" prefWidth="300"/>
+                </columns>
+            </TableView>
+
+            <!-- Form fields to add/update a place -->
+            <GridPane hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="40"/>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="40"/>
+                </columnConstraints>
+
+                <Label text="Name:"    GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Type:"    GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <TextField fx:id="typeField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                <Label text="Address:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="addressField"
+                           GridPane.rowIndex="1"
+                           GridPane.columnIndex="1"
+                           GridPane.columnSpan="3"/>
+            </GridPane>
+        </VBox>
+    </center>
+
+    <!-- Bottom: Add / Update / Delete / Back buttons -->
+    <bottom>
+        <HBox spacing="15" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Add New"   onAction="#handleAddPlace"/>
+            <Button text="Update"    onAction="#handleUpdatePlace"/>
+            <Button text="Delete"    onAction="#handleDeletePlace"/>
+            <Button text="Back to Dashboard" onAction="#goToDashboard"/>
+        </HBox>
+    </bottom>
+</BorderPane>

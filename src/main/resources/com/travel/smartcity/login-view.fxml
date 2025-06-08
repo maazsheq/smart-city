@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
+<!--            xmlns:fx="http://javafx.com/fxml"-->
+<!--            fx:controller="com.travel.smartcity.LoginView"-->
+<!--            prefHeight="400.0" prefWidth="600.0">-->
+
+<!--</AnchorPane>-->
+
+<AnchorPane fx:id="anchorPane"
+            xmlns="http://javafx.com/javafx/20"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.travel.smartcity.controller.LoginController"
+            prefWidth="600" prefHeight="400"
+            stylesheets="@css/login.css"
+            styleClass="login-root">
+
+    <children>
+        <Label text="Username:" layoutX="200" layoutY="200"
+               style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+        <TextField fx:id="usernameField" layoutX="300" layoutY="200" prefWidth="180"/>
+
+        <Label text="Password:" layoutX="200" layoutY="250"
+               style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+        <PasswordField fx:id="passwordField" layoutX="300" layoutY="250" prefWidth="180"/>
+
+        <Button text="Login" layoutX="300" layoutY="300" prefWidth="80"
+                onAction="#handleLogin"/>
+        <Button text="Signup" layoutX="400" layoutY="300" prefWidth="80"
+                onAction="#handleSignup"/>
+    </children>
+</AnchorPane>

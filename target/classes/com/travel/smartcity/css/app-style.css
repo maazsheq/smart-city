@@ -1,0 +1,8 @@
+/* app‐styles.css */
+.root-layout {
+    /* Point to your image in resources/images/ */
+    -fx-background-image: url("/com/travel/smartcity/images/city-background.png");
+    -fx-background-size: cover;        /* scale to fill */
+    -fx-background-position: center;    /* center it */
+    -fx-background-repeat: no-repeat;
+}

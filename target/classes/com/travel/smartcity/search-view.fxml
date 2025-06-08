@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
+<!--            xmlns:fx="http://javafx.com/fxml"-->
+<!--            fx:controller="com.travel.smartcity.SearchViewXml"-->
+<!--            prefHeight="400.0" prefWidth="600.0">-->
+
+<!--</AnchorPane>-->
+
+
+<!--<?import javafx.geometry.Insets?>-->
+<!--<BorderPane fx:id="rootPane"-->
+<!--            xmlns="http://javafx.com/javafx"-->
+<!--            xmlns:fx="http://javafx.com/fxml"-->
+<!--            fx:controller="com.travel.smartcity.controller.SearchController"-->
+<!--            prefHeight="400.0" prefWidth="600.0">-->
+<!--<top>-->
+<!--    <HBox spacing="10" alignment="CENTER">-->
+<!--        <TextField fx:id="searchField" promptText="Search places..." />-->
+<!--        <Button text="Go" onAction="#handleSearch" />-->
+<!--    </HBox>-->
+<!--</top>-->
+<!--<center>-->
+<!--    <TableView fx:id="resultTable">-->
+<!--        <columns>-->
+<!--            <TableColumn text="Name" fx:id="nameCol" />-->
+<!--            <TableColumn text="Type" fx:id="typeCol" />-->
+<!--            <TableColumn text="Address" fx:id="addressCol" />-->
+<!--        </columns>-->
+<!--    </TableView>-->
+<!--</center>-->
+
+<!--    <bottom>-->
+<!--        <HBox alignment="CENTER_RIGHT" spacing="10">-->
+<!--            <padding>-->
+<!--                <Insets top="10" right="10" bottom="10" left="10"/>-->
+<!--            </padding>-->
+<!--            <Button text="Back to Dashboard" onAction="#goToDashboard"/>-->
+<!--        </HBox>-->
+<!--    </bottom>-->
+
+
+<!--</BorderPane>-->
+
+<BorderPane xmlns="http://javafx.com/javafx/20"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.travel.smartcity.controller.SearchController">
+
+    <top>
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="searchField" promptText="Search places..." />
+            <Button text="Go" onAction="#handleSearch"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="resultTable">
+            <columns>
+                <TableColumn fx:id="nameCol" text="Name"/>
+                <TableColumn fx:id="typeCol" text="Type"/>
+                <TableColumn fx:id="addressCol" text="Address"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

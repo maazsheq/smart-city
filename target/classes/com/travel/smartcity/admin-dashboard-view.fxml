@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
+<!--            xmlns:fx="http://javafx.com/fxml"-->
+<!--            fx:controller="com.travel.smartcity.AdminDashboardView"-->
+<!--            prefHeight="400.0" prefWidth="600.0">-->
+
+<!--</AnchorPane>-->
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<BorderPane
+        fx:id="adminDashboardPane"
+        xmlns="http://javafx.com/javafx/20"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.travel.smartcity.controller.AdminDashboardController"
+        prefWidth="800" prefHeight="600">
+
+    <!-- Top bar with logout and about -->
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Logout" onAction="#handleLogout"/>
+            </Menu>
+            <Menu text="Help">
+                <MenuItem text="About" onAction="#handleAbout"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Left‐side navigation for Admin features -->
+    <left>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Admin Panel" style="-fx-font-size: 18px;"/>
+            <Button text="Manage Places" onAction="#goToPlaceManagement" prefWidth="150"/>
+            <Button text="Manage Users" onAction="#goToUserManagement" prefWidth="150"/>
+        </VBox>
+
+    </left>
+
+    <!-- Center: a placeholder pane; each button will load a child view here -->
+    <center>
+        <StackPane fx:id="contentPane"/>
+    </center>
+</BorderPane>

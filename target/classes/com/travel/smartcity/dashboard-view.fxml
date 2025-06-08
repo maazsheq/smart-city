@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
+<!--            xmlns:fx="http://javafx.com/fxml"-->
+<!--            fx:controller="com.travel.smartcity.DashboardView"-->
+<!--            prefHeight="400.0" prefWidth="600.0">-->
+
+<!--</AnchorPane>-->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane fx:id="rootPane"
+            xmlns="http://javafx.com/javafx/20"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.travel.smartcity.controller.DashboardController"
+            prefWidth="800" prefHeight="600">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Logout" onAction="#handleLogout"/>
+            </Menu>
+            <Menu text="Admin" fx:id="adminMenu">
+                <!-- This menu will only be visible if the user is admin -->
+                <MenuItem fx:id="managePlacesBtn" text="Manage Places" onAction="#goToManagePlaces"/>
+            </Menu>
+            <Menu text="Help">
+                <MenuItem text="About" onAction="#handleAbout"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <Button text="Profile" onAction="#goToProfile"/>
+            <Button text="Search" onAction="#goToSearch"/>
+            <Button text="My Bookings" onAction="#goToBookings"/>
+            <Button text="Payments" onAction="#goToPayments"/>
+        </VBox>
+    </center>
+</BorderPane>

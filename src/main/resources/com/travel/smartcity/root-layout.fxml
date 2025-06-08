@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns="http://javafx.com/javafx/20"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.travel.smartcity.controller.RootLayoutController"
+            stylesheets="@css/app-style.css"
+            styleClass="root-layout"
+            prefWidth="800" prefHeight="600">
+
+    <!-- TOP: common toolbar with Dashboard, Profile, Logout -->
+    <top>
+        <ToolBar>
+            <Button text="Dashboard" onAction="#showDashboard"/>
+
+            <!-- Rounded‐avatar MenuButton (dropdown) -->
+            <MenuButton fx:id="profileMenuButton"
+                        text=""
+                        styleClass="avatar-menu-button">
+                <graphic>
+                    <ImageView fx:id="avatarImage"
+                               fitWidth="32" fitHeight="32"
+                               preserveRatio="true"
+                               pickOnBounds="true">
+                        <image>
+                            <!-- assuming your avatar.png is in /resources/images/ -->
+                            <Image url="@images/avatar.png"/>
+                        </image>
+                        <clip>
+                            <Circle radius="16" centerX="16" centerY="16"/>
+                        </clip>
+                    </ImageView>
+                </graphic>
+                <items>
+                    <MenuItem text="Edit Profile" onAction="#handleEditProfile"/>
+                    <MenuItem text="Logout" onAction="#handleLogout"/>
+                </items>
+            </MenuButton>
+
+            <Pane HBox.hgrow="ALWAYS"/>  <!-- spacer pushes logout to right -->
+        </ToolBar>
+    </top>
+
+    <!-- CENTER: placeholder where child screens will be injected -->
+    <center>
+        <StackPane fx:id="centerPane"/>
+    </center>
+</BorderPane>
+
