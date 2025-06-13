@@ -19,7 +19,6 @@
     <!-- TOP: common toolbar with Dashboard, Profile, Logout -->
     <top>
         <ToolBar>
-            <Button text="Dashboard" onAction="#showDashboard"/>
 
             <!-- Rounded‐avatar MenuButton (dropdown) -->
             <MenuButton fx:id="profileMenuButton"

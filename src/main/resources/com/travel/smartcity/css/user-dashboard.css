@@ -1,0 +1,37 @@
+.root-dash {
+    -fx-background-image: url("/com/travel/smartcity/images/city-back.jpg");
+    -fx-background-size: cover;       /* fill the area, cropping if needed */
+    -fx-background-position: center;  /* center the crop */
+    -fx-background-repeat: no-repeat;
+}
+
+/* nav-pane background */
+.nav-pane {
+    -fx-background-color: #001f4d;
+}
+
+/* header styling */
+.nav-header {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 10 0 10 15;  /* top/right/bottom/left */
+}
+
+/* all nav buttons share this base style */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 8 15;                     /* vertical/horizontal padding */
+    -fx-max-width: Infinity;               /* fill the full nav-pane width */
+    -fx-border-color: white;               /* uniform white border */
+    -fx-border-width: 0 0 1 0;             /* only bottom border (1px) */
+}
+
+/* hover & focus state: invert colors */
+.nav-button:hover,
+.nav-button:focused {
+    -fx-background-color: white;
+    -fx-text-fill: #001f4d;
+}

@@ -5,14 +5,17 @@ import com.travel.smartcity.util.session.Session;
 import com.travel.smartcity.model.User;
 import com.travel.smartcity.service.AuthService;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class ProfileController {
   @FXML private TextField userNameField;
+  @FXML private PasswordField currentPasswordField;
   @FXML private PasswordField newPasswordField;
+  @FXML private Button addBtn, backBtn;
+
+  @FXML private CheckBox showCurrentPassword, showNewPassword;
+  @FXML private TextField currentPasswordFieldVisible, newPasswordFieldVisible;
 
   private AuthService authService = new AuthService();
   private User currentUser; // initialize from session/context
@@ -23,9 +26,11 @@ public class ProfileController {
     currentUser = Session.getCurrentUser();
     if (currentUser != null) {
       userNameField.setText(currentUser.getUsername());
-//      newPasswordField.setText(currentUser.getPassword());
+      currentPasswordField.setText(currentUser.getPassword());
     }
 //    emailField.setText(currentUser.getEmail());
+    bindPasswordToggle(currentPasswordField, currentPasswordFieldVisible, showCurrentPassword);
+    bindPasswordToggle(newPasswordField,     newPasswordFieldVisible,     showNewPassword);
   }
 
   @FXML
@@ -39,6 +44,33 @@ public class ProfileController {
     new Alert(ok ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR,
             ok ? "Profile updated." : "Update failed.")
             .showAndWait();
+
+    if (ok) {
+      // close on success
+      Stage stage = (Stage)addBtn.getScene().getWindow();
+      stage.close();
+    }
+  }
+
+  @FXML
+  private void handleBack() {
+    // just close the dialog
+    Stage stage = (Stage)backBtn.getScene().getWindow();
+    stage.close();
+  }
+
+  private void bindPasswordToggle(PasswordField pwdField,
+                                  TextField plainField,
+                                  CheckBox toggle) {
+    // Keep their text in sync
+    plainField.textProperty().bindBidirectional(pwdField.textProperty());
+
+    // When toggle is selected, show plainField; else show pwdField
+    plainField.visibleProperty().bind(toggle.selectedProperty());
+    plainField.managedProperty().bind(toggle.selectedProperty());
+
+    pwdField.visibleProperty().bind(toggle.selectedProperty().not());
+    pwdField.managedProperty().bind(toggle.selectedProperty().not());
   }
 
   @FXML
@@ -46,4 +78,7 @@ public class ProfileController {
     Stage stage = (Stage) userNameField.getScene().getWindow();
     SceneRouter.switchTo( stage, "/com/travel/smartcity/dashboard-view.fxml", "Smart City Traveler");
   }
+
+
+
 }

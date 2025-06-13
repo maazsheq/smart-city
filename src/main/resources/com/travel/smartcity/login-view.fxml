@@ -13,26 +13,62 @@
 
 <!--</AnchorPane>-->
 
-<AnchorPane fx:id="anchorPane"
-            xmlns="http://javafx.com/javafx/20"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.travel.smartcity.controller.LoginController"
-            prefWidth="600" prefHeight="400"
-            stylesheets="@css/login.css"
-            styleClass="login-root">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<GridPane fx:controller="com.travel.smartcity.controller.LoginController"
+          xmlns:fx="http://javafx.com/fxml"
+          xmlns="http://javafx.com/javafx/20"
+          alignment="center"
+          hgap="10" vgap="10"
+          stylesheets="@css/login.css"
+          styleClass="login-root">
 
-    <children>
-        <Label text="Username:" layoutX="200" layoutY="200"
-               style="-fx-text-fill: white; -fx-font-size: 14px;"/>
-        <TextField fx:id="usernameField" layoutX="300" layoutY="200" prefWidth="180"/>
+    <!-- outer padding -->
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
 
-        <Label text="Password:" layoutX="200" layoutY="250"
-               style="-fx-text-fill: white; -fx-font-size: 14px;"/>
-        <PasswordField fx:id="passwordField" layoutX="300" layoutY="250" prefWidth="180"/>
+    <columnConstraints>
+        <ColumnConstraints minWidth="100" prefWidth="100"
+                           maxWidth="Infinity" halignment="RIGHT"/>
+        <ColumnConstraints minWidth="200" prefWidth="200"
+                           maxWidth="Infinity" hgrow="ALWAYS"/>
+    </columnConstraints>
 
-        <Button text="Login" layoutX="300" layoutY="300" prefWidth="80"
+    <!-- header -->
+    <Label text="Smart City Traveler Login"
+           GridPane.rowIndex="0" GridPane.columnIndex="0"
+           GridPane.columnSpan="2"
+           GridPane.halignment="CENTER">
+        <font>
+            <Font name="Arial" size="24"/>
+        </font>
+<!--        <GridPane.margin>-->
+<!--            <Insets top="0" right="0" bottom="20" left="0"/>-->
+<!--        </GridPane.margin>-->
+    </Label>
+
+    <!-- username -->
+    <Label text="Username:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="usernameField"
+               prefHeight="40"
+               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <!-- password -->
+    <Label text="Password:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <PasswordField fx:id="passwordField"
+                   prefHeight="40"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <!-- buttons -->
+    <HBox spacing="10"
+          alignment="CENTER_RIGHT"
+          GridPane.rowIndex="3" GridPane.columnIndex="0"
+          GridPane.columnSpan="2">
+        <Button text="Login"
+                defaultButton="true"
                 onAction="#handleLogin"/>
-        <Button text="Signup" layoutX="400" layoutY="300" prefWidth="80"
+        <Button text="Signup"
                 onAction="#handleSignup"/>
-    </children>
-</AnchorPane>
+    </HBox>
+</GridPane>

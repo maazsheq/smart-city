@@ -31,11 +31,20 @@ public class LoginController {
 
       // Now switch the entire scene to RootLayout,
       // which has the toolbar (Dashboard/Profile/Logout).
-      SceneRouter.switchTo(
-              stage,
-              "/com/travel/smartcity/root-layout.fxml",
-              "Smart City Traveler"
-      );
+      if (loggedIn.isAdmin()) {
+        SceneRouter.switchTo(
+                stage,
+                "/com/travel/smartcity/admin-dashboard-view.fxml",
+                "Admin Dashboard - Smart City Traveler"
+        );
+      } else {
+        SceneRouter.switchTo(
+                stage,
+                "/com/travel/smartcity/dashboard-view.fxml",
+                "User Dashboard - Smart City Traveler"
+        );
+      }
+
     } else {
       new Alert(Alert.AlertType.ERROR, "Invalid credentials.").showAndWait();
     }
@@ -52,56 +61,3 @@ public class LoginController {
     );
   }
 }
-
-
-//public class LoginController {
-//  @FXML
-//  private TextField usernameField;
-//  @FXML
-//  private PasswordField passwordField;
-//
-//  private final AuthService authService = new AuthService();
-//
-//  @FXML
-//  private void handleLogin() throws Exception {
-//    String user = usernameField.getText().trim();
-//    String pass = passwordField.getText();
-//
-//    User loggedIn = authService.login(user, pass);
-//    if (loggedIn != null) {
-//      // store user in session
-//      Session.setCurrentUser(loggedIn);
-//
-//      // get the current Stage just once
-//      Stage stage = (Stage) usernameField.getScene().getWindow();
-//
-//      if (loggedIn.isAdmin()) {
-//        // load Admin Dashboard
-//        SceneRouter.switchTo(
-//                stage,
-//                "/com/travel/smartcity/admin-dashboard-view.fxml",
-//                "Admin Dashboard"
-//        );
-//      } else {
-//        // load Regular User Dashboard
-//        SceneRouter.switchTo(
-//                stage,
-//                "/com/travel/smartcity/dashboard-view.fxml",
-//                "Smart City Traveler - Dashboard"
-//        );
-//      }
-//    } else {
-//      new Alert(Alert.AlertType.ERROR, "Invalid credentials.").showAndWait();
-//    }
-//  }
-//
-//  @FXML
-//  private void handleSignup() throws Exception {
-//    Stage stage = (Stage) usernameField.getScene().getWindow();
-//    SceneRouter.switchTo(
-//            stage,
-//            "/com/travel/smartcity/signup-view.fxml",
-//            "Smart City Traveler - Sign Up"
-//    );
-//  }
-//}

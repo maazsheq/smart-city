@@ -11,6 +11,7 @@ module com.travel.smartcity {
   requires eu.hansolo.tilesfx;
   requires com.almasb.fxgl.all;
   requires java.sql;
+  requires annotations;
 
   opens com.travel.smartcity to javafx.fxml;
   opens com.travel.smartcity.controller to javafx.fxml;

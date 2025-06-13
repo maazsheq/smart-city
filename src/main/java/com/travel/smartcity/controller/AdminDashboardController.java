@@ -23,11 +23,11 @@ public class AdminDashboardController {
   @FXML
   private void initialize() {
     // Optionally, load a default child (e.g. Manage Places) on startup:
-    try {
-      goToPlaceManagement();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+//    try {
+//      goToPlaceManagement();
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
   }
 
   @FXML
@@ -64,5 +64,25 @@ public class AdminDashboardController {
             )
     );
     contentPane.getChildren().setAll(node);
+  }
+
+  @FXML
+  private void handleUsers() throws IOException {
+
+  }
+
+  @FXML
+  private void handleHotels() throws IOException {
+
+  }
+
+  @FXML
+  private void handleLibraries() throws IOException {
+
+  }
+
+  @FXML
+  private void handleParks() throws IOException {
+
   }
 }

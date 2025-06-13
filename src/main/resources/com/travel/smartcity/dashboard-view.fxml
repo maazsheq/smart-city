@@ -1,41 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
-<!--            xmlns:fx="http://javafx.com/fxml"-->
-<!--            fx:controller="com.travel.smartcity.DashboardView"-->
-<!--            prefHeight="400.0" prefWidth="600.0">-->
-
-<!--</AnchorPane>-->
-
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Circle?>
 <BorderPane fx:id="rootPane"
             xmlns="http://javafx.com/javafx/20"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.travel.smartcity.controller.DashboardController"
-            prefWidth="800" prefHeight="600">
-    <top>
-        <MenuBar>
-            <Menu text="File">
-                <MenuItem text="Logout" onAction="#handleLogout"/>
-            </Menu>
-            <Menu text="Admin" fx:id="adminMenu">
-                <!-- This menu will only be visible if the user is admin -->
-                <MenuItem fx:id="managePlacesBtn" text="Manage Places" onAction="#goToManagePlaces"/>
-            </Menu>
-            <Menu text="Help">
-                <MenuItem text="About" onAction="#handleAbout"/>
-            </Menu>
-        </MenuBar>
-    </top>
+            stylesheets="@css/user-dashboard.css"
+            styleClass="root-dash">
 
-    <center>
-        <VBox spacing="20" alignment="CENTER">
-            <Button text="Profile" onAction="#goToProfile"/>
-            <Button text="Search" onAction="#goToSearch"/>
-            <Button text="My Bookings" onAction="#goToBookings"/>
-            <Button text="Payments" onAction="#goToPayments"/>
+    <top>
+        <ToolBar style="-fx-background-color: #f0f0f0;">
+
+            <Pane HBox.hgrow="ALWAYS" />
+
+            <!-- avatar dropdown -->
+            <MenuButton fx:id="profileMenuButton"
+                        text=""    styleClass="avatar-menu-button">
+                <graphic>
+                    <ImageView fitWidth="32" fitHeight="32" preserveRatio="true">
+                        <image>
+                            <Image url="@images/avatar.png"/>
+                        </image>
+                        <clip>
+                            <Circle radius="16" centerX="16" centerY="16"/>
+                        </clip>
+                    </ImageView>
+                </graphic>
+                <items>
+                    <MenuItem fx:id="usernameItem" disable="true"/>
+                    <MenuItem fx:id="emailItem"    disable="true"/>
+                    <MenuItem text="Logout"       onAction="#handleLogout"/>
+                </items>
+            </MenuButton>
+        </ToolBar>
+    </top>
+    <!-- LEFT: vertical nav -->
+    <left>
+        <VBox fx:id="navPane" spacing="5" minWidth="200"
+              style="-fx-background-color: #001f4d; -fx-padding: 10;">
+            <Label text="Dashboard"
+                   style="-fx-text-fill: white; -fx-font-size: 18px; -fx-padding: 0 0 10 0;"/>
+            <Button text="Add Personal Details"    onAction="#goToAddPersonal"    styleClass="nav-button"/>
+            <Button text="View Profile"            onAction="#updateProfile" styleClass="nav-button"/>
+            <Button text="View Details"            onAction="#goToViewPersonal"   styleClass="nav-button"/>
+            <Button text="Delete Personal Details" onAction="#goToDeletePersonal" styleClass="nav-button"/>
+            <Button text="Check Package"           onAction="#goToCheckPackage"   styleClass="nav-button"/>
+            <Button text="Book Package"            onAction="#goToBookPackage"    styleClass="nav-button"/>
+            <Button text="View Package"            onAction="#goToViewPackage"    styleClass="nav-button"/>
+            <Button text="View Hotels"             onAction="#goToViewHotels"     styleClass="nav-button"/>
+            <Button text="Book Hotel"              onAction="#goToBookHotel"      styleClass="nav-button"/>
+            <Button text="View Booked Hotel"       onAction="#goToViewBookedHotel" styleClass="nav-button"/>
+            <Button text="Destinations"            onAction="#goToDestinations"   styleClass="nav-button"/>
+            <Button text="Payment"                 onAction="#goToPayment"        styleClass="nav-button"/>
+            <Button text="Calculator"              onAction="#goToCalculator"     styleClass="nav-button"/>
+            <Button text="Notepad"                 onAction="#goToNotepad"        styleClass="nav-button"/>
+            <Button text="About"                   onAction="#handleAbout"        styleClass="nav-button"/>
         </VBox>
+    </left>
+
+    <!-- CENTER: background image + overlaid title -->
+    <center>
+        <StackPane fx:id="centerStackPane">
+            <!-- full-bleed background -->
+            <ImageView fitWidth="1720" fitHeight="1200" preserveRatio="false">
+                <image>
+                    <Image url="@images/city-back.jpg"/>
+                </image>
+            </ImageView>
+            <!-- overlay title -->
+            <Label text="Travel and Tourism Management System"
+                   style="-fx-text-fill: white;
+                    -fx-font-size: 36px;
+                    -fx-font-weight: bold;
+                    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8), 4,0,0,2 );"/>
+        </StackPane>
+
     </center>
+
 </BorderPane>
+

@@ -24,7 +24,7 @@ public class UserDAO {
         String pass = rs.getString("password");
         String email = rs.getString("email");
         boolean isAdmin = rs.getBoolean("is_admin");
-        return new User(user, pass, email, isAdmin);
+        return new User(id, user, pass, email, isAdmin);
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -118,7 +118,7 @@ public class UserDAO {
 
       while (rs.next()) {
         User u = new User(
-//                rs.getInt("id"),
+                rs.getInt("id"),
                 rs.getString("username"),
                 rs.getString("password"),
                 rs.getString("email"),

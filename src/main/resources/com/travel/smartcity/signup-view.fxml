@@ -49,11 +49,9 @@
     <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
     <columnConstraints>
         <ColumnConstraints minWidth="100" prefWidth="100"
-                           maxWidth="Infinity" halignment="RIGHT">
-        </ColumnConstraints>
+                           maxWidth="Infinity" halignment="RIGHT"/>
         <ColumnConstraints minWidth="200" prefWidth="200"
-                           maxWidth="Infinity" hgrow="ALWAYS">
-        </ColumnConstraints>
+                           maxWidth="Infinity" hgrow="ALWAYS"/>
     </columnConstraints>
 
 
@@ -68,8 +66,6 @@
             <Insets top="20" right="0" bottom="20" left="0"></Insets>
         </GridPane.margin>
     </Label>
-
-
 
     <!-- Add Name Label -->
     <Label text="Full Name : " GridPane.columnIndex="0"

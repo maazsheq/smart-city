@@ -20,7 +20,16 @@ public class SceneRouter {
   public static void switchTo(Stage stage, String fxmlPath, String title) throws Exception {
     Parent root = FXMLLoader.load(SceneRouter.class.getResource(fxmlPath));
     stage.setTitle(title);
+    stage.setScene(new Scene(root));
+    stage.setMaximized(true);
+    stage.show();
+  }
+
+  public static void switchToLogin(Stage stage, String fxmlPath, String title) throws Exception {
+    Parent root = FXMLLoader.load(SceneRouter.class.getResource(fxmlPath));
+    stage.setTitle(title);
     stage.setScene(new Scene(root, 800, 600));
+    stage.setMaximized(false);
     stage.show();
   }
 
