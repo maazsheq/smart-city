@@ -22,10 +22,27 @@ public class Place {
   public StringProperty addressProperty() { return address; }
 
   // getters for id and raw String values
-  public int getId() { return id; }
-  public String getName() { return name.get(); }
-  public String getType() { return type.get(); }
-  public String getAddress() { return address.get(); }
+//  public int getId() { return id; }
+//  public String getName() { return name.get(); }
+//  public String getType() { return type.get(); }
+//  public String getAddress() { return address.get(); }
+
+
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name.get();
+  }
+
+  public String getType() {
+    return type.get();
+  }
+
+  public String getAddress() {
+    return address.get();
+  }
 
   public void setId(int id) {
     this.id = id;

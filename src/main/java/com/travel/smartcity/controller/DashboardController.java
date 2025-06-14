@@ -70,8 +70,8 @@ public class DashboardController {
   @FXML
   private void goToProfile() throws Exception {
     Stage stage = (Stage) rootPane.getScene().getWindow();
-//    SceneRouter.switchTo(stage, "/com/travel/smartcity/profile-view.fxml", "Profile");
-    SceneRouter.switchTo(stage, "/com/travel/smartcity/profile-view.fxml", "Profile");
+//    SceneRouter.switchTo(stage, "/com/travel/smartcity/profile-dialog.fxml", "Profile");
+    SceneRouter.switchTo(stage, "/com/travel/smartcity/profile-dialog.fxml", "Profile");
 
   }
 
@@ -135,7 +135,7 @@ public class DashboardController {
   @FXML
   private void updateProfile(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass()
-            .getResource("/com/travel/smartcity/profile-view.fxml"));
+            .getResource("/com/travel/smartcity/profile-dialog.fxml"));
     Parent root = loader.load();
 
     Stage dialog = new Stage();

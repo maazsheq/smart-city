@@ -60,7 +60,7 @@
             <Button text="Payment"                 onAction="#goToPayment"        styleClass="nav-button"/>
             <Button text="Calculator"              onAction="#goToCalculator"     styleClass="nav-button"/>
             <Button text="Notepad"                 onAction="#goToNotepad"        styleClass="nav-button"/>
-            <Button text="About"                   onAction="#handleAbout"        styleClass="nav-button"/>
+            <Button text="Search"                   onAction="#goToSearch"        styleClass="nav-button"/>
         </VBox>
     </left>
 

@@ -6,16 +6,27 @@ import com.travel.smartcity.model.User;
 import com.travel.smartcity.service.AuthService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class ProfileController {
+  // Current‐password toggles
   @FXML private TextField userNameField;
-  @FXML private PasswordField currentPasswordField;
-  @FXML private PasswordField newPasswordField;
   @FXML private Button addBtn, backBtn;
 
-  @FXML private CheckBox showCurrentPassword, showNewPassword;
-  @FXML private TextField currentPasswordFieldVisible, newPasswordFieldVisible;
+  @FXML private PasswordField currentPasswordField;
+  @FXML private TextField     currentPasswordFieldPlain;
+  @FXML private Button        toggleCurrentPasswordBtn;
+  @FXML private ImageView currentEyeIcon;
+  private boolean showingCurrent = false;
+
+  // New‐password toggles
+  @FXML private PasswordField newPasswordField;
+  @FXML private TextField     newPasswordFieldPlain;
+  @FXML private Button        toggleNewPasswordBtn;
+  @FXML private ImageView     newEyeIcon;
+  private boolean showingNew = false;
 
   private AuthService authService = new AuthService();
   private User currentUser; // initialize from session/context
@@ -29,8 +40,10 @@ public class ProfileController {
       currentPasswordField.setText(currentUser.getPassword());
     }
 //    emailField.setText(currentUser.getEmail());
-    bindPasswordToggle(currentPasswordField, currentPasswordFieldVisible, showCurrentPassword);
-    bindPasswordToggle(newPasswordField,     newPasswordFieldVisible,     showNewPassword);
+    currentPasswordFieldPlain.textProperty()
+            .bindBidirectional(currentPasswordField.textProperty());
+    newPasswordFieldPlain.textProperty()
+            .bindBidirectional(newPasswordField.textProperty());
   }
 
   @FXML
@@ -57,6 +70,41 @@ public class ProfileController {
     // just close the dialog
     Stage stage = (Stage)backBtn.getScene().getWindow();
     stage.close();
+  }
+
+
+  @FXML
+  private void onToggleCurrentPassword() {
+    showingCurrent = !showingCurrent;
+    // swap visibility/management
+    currentPasswordFieldPlain.setVisible(showingCurrent);
+    currentPasswordFieldPlain.setManaged(showingCurrent);
+    currentPasswordField     .setVisible(!showingCurrent);
+    currentPasswordField     .setManaged(!showingCurrent);
+
+    // swap the icon
+    String path = showingCurrent
+            ? "/com/travel/smartcity/images/eye-open.png"
+            : "/com/travel/smartcity/images/eye-closed.png";
+    currentEyeIcon.setImage(
+            new Image(getClass().getResourceAsStream(path))
+    );
+  }
+
+  @FXML
+  private void onToggleNewPassword() {
+    showingNew = !showingNew;
+    newPasswordFieldPlain.setVisible(showingNew);
+    newPasswordFieldPlain.setManaged(showingNew);
+    newPasswordField     .setVisible(!showingNew);
+    newPasswordField     .setManaged(!showingNew);
+
+    String path = showingNew
+            ? "/com/travel/smartcity/images/eye-open.png"
+            : "/com/travel/smartcity/images/eye-closed.png";
+    newEyeIcon.setImage(
+            new Image(getClass().getResourceAsStream(path))
+    );
   }
 
   private void bindPasswordToggle(PasswordField pwdField,

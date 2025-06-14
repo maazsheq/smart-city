@@ -25,6 +25,23 @@ public class PlaceManagementController {
   @FXML private TextField nameField;
   @FXML private TextField typeField;
   @FXML private TextField addressField;
+  @FXML private Button addBtn, backBtn;
+
+  private String defaultType;
+  public void setDefaultType(String defaultType) {
+    this.defaultType = defaultType;
+    typeField.setText(defaultType);
+    typeField.setEditable(false);
+    // Load all places into the table
+    refreshTable();
+  }
+
+  public void setDefaultTypee(String defaultType) {
+    // Pre‐fill the type and disable editing
+    typeField.setText(defaultType);
+    typeField.setEditable(false);
+  }
+
 
   private PlaceService placeService = new PlaceService();
 
@@ -36,8 +53,6 @@ public class PlaceManagementController {
     colType.setCellValueFactory(new PropertyValueFactory<>("type"));
     colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
 
-    // Load all places into the table
-    refreshTable();
 
     // When a row is clicked, populate the form fields
     placeTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
@@ -49,15 +64,22 @@ public class PlaceManagementController {
     });
   }
 
+
+//  private void refreshTable() {
+//    List<Place> all = placeService.listAllPlaces();
+//    placeTable.setItems(FXCollections.observableArrayList(all));
+//    clearForm();
+//  }
+
   private void refreshTable() {
-    List<Place> all = placeService.listAllPlaces();
-    placeTable.setItems(FXCollections.observableArrayList(all));
+    List<Place> list = placeService.listPlacesByType(defaultType);
+    placeTable.setItems(FXCollections.observableArrayList(list));
     clearForm();
   }
 
   private void clearForm() {
     nameField.clear();
-    typeField.clear();
+//    typeField.clear();
     addressField.clear();
   }
 
@@ -136,6 +158,14 @@ public class PlaceManagementController {
       }
     });
   }
+
+  @FXML
+  private void handleBack() {
+    // just close the dialog
+    Stage stage = (Stage)backBtn.getScene().getWindow();
+    stage.close();
+  }
+
 
   @FXML
   private void goToDashboard() throws Exception {

@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class UserManagementController {
   @FXML private TextField emailField;
   @FXML private PasswordField passwordField;
   @FXML private CheckBox isAdminCheckbox;
+
+  @FXML private Button backBtn;
 
   private final UserService userService = new UserService();
 
@@ -79,6 +82,13 @@ public class UserManagementController {
     } else {
       new Alert(Alert.AlertType.ERROR, "Failed to create user.").showAndWait();
     }
+  }
+
+  @FXML
+  private void handleBack() {
+    // just close the dialog
+    Stage stage = (Stage)backBtn.getScene().getWindow();
+    stage.close();
   }
 
   @FXML

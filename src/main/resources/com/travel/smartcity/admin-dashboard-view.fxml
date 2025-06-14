@@ -10,18 +10,18 @@
         xmlns="http://javafx.com/javafx/20"
         xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="com.travel.smartcity.controller.AdminDashboardController"
-        prefWidth="800" prefHeight="600">
+        prefWidth="800" prefHeight="600"
+        stylesheets="@css/user-dashboard.css"
+        styleClass="root-dash">
 
     <top>
         <ToolBar style="-fx-background-color: #f0f0f0;">
-            <!-- you can also put your app logo or a Dashboard button here -->
 
-            <!-- push avatar all the way right -->
-            <Pane HBox.hgrow="ALWAYS"/>
+            <Pane HBox.hgrow="ALWAYS" />
 
             <!-- avatar dropdown -->
             <MenuButton fx:id="profileMenuButton"
-                        text="" styleClass="avatar-menu-button">
+                        text=""    styleClass="avatar-menu-button">
                 <graphic>
                     <ImageView fitWidth="32" fitHeight="32" preserveRatio="true">
                         <image>
@@ -34,45 +34,45 @@
                 </graphic>
                 <items>
                     <MenuItem fx:id="usernameItem" disable="true"/>
-                    <MenuItem fx:id="emailItem" disable="true"/>
-                    <MenuItem text="Logout" onAction="#handleLogout"/>
+                    <MenuItem fx:id="emailItem"    disable="true"/>
+                    <MenuItem text="Logout"       onAction="#handleLogout"/>
                 </items>
             </MenuButton>
         </ToolBar>
     </top>
+    <!-- LEFT: vertical nav -->
     <left>
-        <VBox fx:id="navPane" spacing="5" prefWidth="200"
+        <VBox fx:id="navPane" spacing="5" minWidth="200"
               style="-fx-background-color: #001f4d; -fx-padding: 10;">
-            <Label text="Dashboard"
-                   style="-fx-text-fill: white; -fx-font-size: 18px; -fx-padding: 0 0 10 0;"/>
-            <Button text="Manage Users"
-                    onAction="#handleUsers"
-                    style="-fx-text-fill: white; -fx-background-color: transparent;"/>
-
-            <!-- one dropdown for all place‐types -->
-            <MenuButton text="Manage Places"
-                        textFill="WHITE"
-                        style="-fx-background-color: transparent;"
-                        mnemonicParsing="false">
-                <items>
-                    <MenuItem text="Hotels"    onAction="#handleHotels"/>
-                    <MenuItem text="Libraries" onAction="#handleLibraries"/>
-                    <MenuItem text="Parks"     onAction="#handleParks"/>
-                </items>
-            </MenuButton>
-
-            <!-- any other nav items… -->
+        <Label text="Dashboard"
+               style="-fx-text-fill: white; -fx-font-size: 18px; -fx-padding: 0 0 10 0;"/>
+            <Button text="Add Personal Details"    onAction="#goToAddPersonal"    styleClass="nav-button"/>
+            <Button text="View Profile"            onAction="#updateProfile" styleClass="nav-button"/>
+            <Button text="Manage Users"            onAction="#handleUsers"    styleClass="nav-button"/>
+            <Button text="Manage Hotels"           onAction="#handleHotels" styleClass="nav-button"/>
+            <Button text="Manage Parks"            onAction="#handleParks"   styleClass="nav-button"/>
+            <Button text="Manage Libraries"        onAction="#handleLibraries" styleClass="nav-button"/>
+            <Button text="Mange Jobs"              onAction="#handleJobs"   styleClass="nav-button"/>
+            <Button text="Manage Destinations"     onAction="#handleDestinations"    styleClass="nav-button"/>
+            <Button text="Manage Restaurants"      onAction="#handleRestaurants"    styleClass="nav-button"/>
+            <Button text="View Bookings"           onAction="#viewBookings"     styleClass="nav-button"/>
+<!--            <Button text="Book Hotel"              onAction="#goToBookHotel"      styleClass="nav-button"/>-->
+<!--            <Button text="View Booked Hotel"       onAction="#goToViewBookedHotel" styleClass="nav-button"/>-->
+<!--            <Button text="Destinations"            onAction="#goToDestinations"   styleClass="nav-button"/>-->
+<!--            <Button text="Payment"                 onAction="#goToPayment"        styleClass="nav-button"/>-->
+<!--            <Button text="Calculator"              onAction="#goToCalculator"     styleClass="nav-button"/>-->
+<!--            <Button text="Notepad"                 onAction="#goToNotepad"        styleClass="nav-button"/>-->
+<!--            <Button text="About"                   onAction="#handleAbout"        styleClass="nav-button"/>-->
         </VBox>
     </left>
 
-
     <!-- CENTER: background image + overlaid title -->
     <center>
-        <StackPane>
+        <StackPane fx:id="centerStackPane">
             <!-- full-bleed background -->
-            <ImageView fitWidth="600" fitHeight="600" preserveRatio="false">
+            <ImageView fitWidth="1720" fitHeight="1200" preserveRatio="false">
                 <image>
-                    <Image url="@images/city-background.png"/>
+                    <Image url="@images/city-back.jpg"/>
                 </image>
             </ImageView>
             <!-- overlay title -->
@@ -82,5 +82,7 @@
                     -fx-font-weight: bold;
                     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8), 4,0,0,2 );"/>
         </StackPane>
+
     </center>
+
 </BorderPane>

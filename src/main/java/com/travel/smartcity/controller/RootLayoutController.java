@@ -38,7 +38,7 @@ public class RootLayoutController {
 
   @FXML
   private void showProfile() {
-    loadIntoCenter("/com/travel/smartcity/profile-view.fxml");
+    loadIntoCenter("/com/travel/smartcity/profile-dialog.fxml");
   }
 
   @FXML
@@ -71,7 +71,7 @@ public class RootLayoutController {
 
   @FXML
   private void handleEditProfile() {
-    loadIntoCenter("/com/travel/smartcity/profile-view.fxml");
+    loadIntoCenter("/com/travel/smartcity/profile-dialog.fxml");
   }
 }
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/20"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.travel.smartcity.controller.PlaceManagementController"
+            prefWidth="800" prefHeight="600">
+
+    <!-- padding -->
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <!-- Top banner -->
+    <top>
+        <Label text="Manage Places"
+               style="-fx-font-size:20px; -fx-font-weight:bold;">
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+        </Label>
+    </top>
+
+    <!-- Center: table + form + buttons -->
+    <center>
+        <VBox spacing="10">
+
+            <!-- 1) Table of existing places -->
+            <TableView fx:id="placeTable" prefHeight="300">
+                <columns>
+                    <TableColumn fx:id="colId"    text="ID"       prefWidth="50"/>
+                    <TableColumn fx:id="colName"  text="Name"     prefWidth="200"/>
+                    <TableColumn fx:id="colAddress"    text="Address"  prefWidth="300"/>
+                    <TableColumn fx:id="colType"       text="Type"     prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <!-- 2) Form to add/update a place -->
+            <GridPane hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="30"/>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="30"/>
+                </columnConstraints>
+
+                <Label      text="Name:"        GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField  fx:id="nameField"   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label      text="Address:"     GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField  fx:id="addressField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label      text="Type:"        GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField  fx:id="typeField"
+                            editable="false"
+                            GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            </GridPane>
+
+            <!-- 3) CRUD Buttons -->
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Add Place"     onAction="#handleAddPlace"
+                        prefWidth="100" style="-fx-background-color:black; -fx-text-fill:white;"/>
+                <Button text="Update Place"  onAction="#handleUpdatePlace"
+                        prefWidth="100" style="-fx-background-color:black; -fx-text-fill:white;"/>
+                <Button text="Delete Place"  onAction="#handleDeletePlace"
+                        prefWidth="100" style="-fx-background-color:black; -fx-text-fill:white;"/>
+                <Button fx:id="backBtn" text="Back"          onAction="#handleBack"
+                        prefWidth="100" style="-fx-background-color:black; -fx-text-fill:white;"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
