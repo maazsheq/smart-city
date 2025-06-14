@@ -134,4 +134,28 @@ public class PlaceDAO {
     }
     return list;
   }
+
+  public List<Place> findByType(String type) {
+    List<Place> list = new ArrayList<>();
+    String sql = "SELECT * FROM places WHERE type = ? ORDER BY name";
+    try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+      ps.setString(1, type);
+      try (ResultSet rs = ps.executeQuery()) {
+        while (rs.next()) {
+          list.add(new Place(
+                  rs.getInt("id"),
+                  rs.getString("name"),
+                  rs.getString("type"),
+                  rs.getString("address")
+          ));
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return list;
+  }
+
 }

@@ -36,4 +36,8 @@ public class PlaceService {
     return placeDAO.findAll();
   }
 
+  public List<Place> listPlacesByType(String type) {
+    return placeDAO.findByType(type);
+  }
+
 }
