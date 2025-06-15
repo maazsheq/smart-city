@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/20"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.travel.smartcity.controller.BookingDialogController"
+      spacing="10"
+      alignment="TOP_CENTER"
+prefWidth="600"
+prefHeight="500">     <!-- make it taller -->
+
+<padding>
+<Insets top="20" right="20" bottom="20" left="20"/>
+</padding>
+
+<Label text="Confirm Booking Payment"
+       style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+<GridPane hgap="10" vgap="10">
+<columnConstraints>
+    <ColumnConstraints halignment="LEFT" percentWidth="40"/>
+    <ColumnConstraints halignment="CENTER" percentWidth="60"/>
+</columnConstraints>
+
+<!-- Cardholder Name -->
+<Label text="Cardholder Name:"    GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+<TextField fx:id="cardHolderField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+<Label text="Card Number:"        GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+<TextField fx:id="cardNumField"   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+<Label text="Expiry (MM/YY):"     GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+<TextField fx:id="expiryField"    GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+<Label text="CVV:"                GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+<PasswordField fx:id="cvvField"   GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+<Label text="Booking Date:"       GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+<DatePicker fx:id="datePicker"    GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+</GridPane>
+
+<HBox spacing="15" alignment="CENTER_RIGHT">
+<Button text="Confirm" onAction="#handleConfirm"
+        style="-fx-background-color:forestgreen; -fx-text-fill:white;"/>
+<Button text="Cancel"  onAction="#handleCancel" />
+</HBox>
+        </VBox>

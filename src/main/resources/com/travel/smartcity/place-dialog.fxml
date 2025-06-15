@@ -22,12 +22,24 @@
 
     <!-- Top banner -->
     <top>
-        <Label text="Manage Places"
-               style="-fx-font-size:20px; -fx-font-weight:bold;">
-            <padding>
-                <Insets bottom="10"/>
-            </padding>
-        </Label>
+        <VBox spacing="10">
+            <Label text="Manage Places"
+                   style="-fx-font-size:20px; -fx-font-weight:bold;">
+                <padding><Insets bottom="10"/></padding>
+            </Label>
+
+            <!-- ─────────── Search Bar ─────────── -->
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Search:"/>
+                <TextField fx:id="searchField"
+                           promptText="Enter place name…"
+                           HBox.hgrow="ALWAYS"
+                           onAction="#handleSearch"/>
+                <Button text="Go" onAction="#handleSearch"/>
+                <Button text="Clear"
+                        onAction="#handleClearSearch"/>
+            </HBox>
+        </VBox>
     </top>
 
     <!-- Center: table + form + buttons -->
@@ -45,7 +57,7 @@
             </TableView>
 
             <!-- 2) Form to add/update a place -->
-            <GridPane hgap="10" vgap="10">
+            <GridPane fx:id="addPlacePane" hgap="10" vgap="10">
                 <columnConstraints>
                     <ColumnConstraints percentWidth="20"/>
                     <ColumnConstraints percentWidth="30"/>
@@ -68,14 +80,18 @@
 
             <!-- 3) CRUD Buttons -->
             <HBox spacing="15" alignment="CENTER_RIGHT">
-                <Button text="Add Place"     onAction="#handleAddPlace"
+                <Button fx:id="addBtn" text="Add Place"     onAction="#handleAddPlace"
                         prefWidth="100" style="-fx-background-color:black; -fx-text-fill:white;"/>
-                <Button text="Update Place"  onAction="#handleUpdatePlace"
+                <Button fx:id="updateBtn" text="Update Place"  onAction="#handleUpdatePlace"
                         prefWidth="100" style="-fx-background-color:black; -fx-text-fill:white;"/>
-                <Button text="Delete Place"  onAction="#handleDeletePlace"
+                <Button fx:id="deleteBtn" text="Delete Place"  onAction="#handleDeletePlace"
                         prefWidth="100" style="-fx-background-color:black; -fx-text-fill:white;"/>
                 <Button fx:id="backBtn" text="Back"          onAction="#handleBack"
                         prefWidth="100" style="-fx-background-color:black; -fx-text-fill:white;"/>
+                <Button fx:id="managePackagesBtn" text="View Packages"
+                        onAction="#handleManagePackages"
+                        style="-fx-background-color:darkblue; -fx-text-fill:white;"/>
+
             </HBox>
 
         </VBox>

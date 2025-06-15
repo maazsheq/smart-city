@@ -12,6 +12,7 @@ module com.travel.smartcity {
   requires com.almasb.fxgl.all;
   requires java.sql;
   requires annotations;
+  requires java.desktop;
 
   opens com.travel.smartcity to javafx.fxml;
   opens com.travel.smartcity.controller to javafx.fxml;

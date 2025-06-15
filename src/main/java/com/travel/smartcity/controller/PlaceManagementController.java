@@ -1,16 +1,29 @@
 package com.travel.smartcity.controller;
 
 
+import com.travel.smartcity.model.Package;
 import com.travel.smartcity.model.Place;
+import com.travel.smartcity.model.User;
+import com.travel.smartcity.service.PackageService;
 import com.travel.smartcity.service.PlaceService;
 import com.travel.smartcity.util.SceneRouter;
+import com.travel.smartcity.util.session.Session;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlaceManagementController {
 
@@ -25,7 +38,15 @@ public class PlaceManagementController {
   @FXML private TextField nameField;
   @FXML private TextField typeField;
   @FXML private TextField addressField;
-  @FXML private Button addBtn, backBtn;
+  @FXML private GridPane addPlacePane;
+  @FXML private Button addBtn, backBtn, updateBtn, deleteBtn, managePackagesBtn;
+
+  @FXML private TextField searchField;
+
+  @FXML
+  private TextField packageDetailsField;   // fx:id in your FXML
+  @FXML
+  private Button addPackageBtn;
 
   private String defaultType;
   public void setDefaultType(String defaultType) {
@@ -44,9 +65,20 @@ public class PlaceManagementController {
 
 
   private PlaceService placeService = new PlaceService();
+  private PackageService packageService = new PackageService();
 
   @FXML
   private void initialize() {
+
+    User current = Session.getCurrentUser();
+    boolean isAdmin = (current != null && current.isAdmin());
+
+    // Show/hide all but Back
+    addBtn           .setVisible(isAdmin);
+    updateBtn        .setVisible(isAdmin);
+    deleteBtn        .setVisible(isAdmin);
+//    managePackagesBtn.setVisible(isAdmin);
+    addPlacePane     .setVisible(isAdmin);
     // Configure table columns to map to Place properties
     colId.setCellValueFactory(new PropertyValueFactory<>("id"));
     colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -157,6 +189,89 @@ public class PlaceManagementController {
         }
       }
     });
+  }
+
+  @FXML
+  private void handleManagePackages(ActionEvent event) throws IOException {
+    Place selected = placeTable.getSelectionModel().getSelectedItem();
+    if (selected == null) {
+      new Alert(Alert.AlertType.WARNING,
+              "Select a place before managing its packages.")
+              .showAndWait();
+      return;
+    }
+
+    // Load the package‐management dialog
+    FXMLLoader loader = new FXMLLoader(getClass()
+            .getResource("/com/travel/smartcity/place-packages-dialog.fxml"));
+    Parent root = loader.load();
+
+    // Pass the selected place’s ID into the package controller
+    PackageManagementController pkgCtrl = loader.getController();
+    pkgCtrl.setPlace(selected.getId());
+
+    Stage dialog = new Stage();
+    dialog.initModality(Modality.APPLICATION_MODAL);
+    dialog.initOwner(((Node)event.getSource()).getScene().getWindow());
+    dialog.setTitle("Packages for “" + selected.getName() + "”");
+    dialog.setScene(new Scene(root));
+    dialog.setResizable(false);
+    dialog.showAndWait();
+  }
+
+
+//  @FXML
+//  private void handleAddPackage() {
+//    Place selected = placeTable.getSelectionModel().getSelectedItem();
+//    if (selected == null) {
+//      new Alert(Alert.AlertType.WARNING, "Select a place before adding a package.").showAndWait();
+//      return;
+//    }
+//
+//    String details = packageDetailsField.getText().trim();
+//    if (details.isEmpty()) {
+//      new Alert(Alert.AlertType.WARNING, "Package details cannot be empty.").showAndWait();
+//      return;
+//    }
+//
+//    // Build the model
+//    Package pkg = new Package(selected.getId(), details);
+//
+//    // Persist via service
+//    boolean ok = packageService.create(pkg);
+//    new Alert(ok ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR,
+//            ok ? "Package added!" : "Failed to add package.")
+//            .showAndWait();
+//
+//    if (ok) {
+//      packageDetailsField.clear();
+//      refreshPackageTable(selected);
+//    }
+//  }
+
+  /** Handler for the “Go” or ENTER in the searchField */
+  @FXML
+  private void handleSearch() {
+    String term = searchField.getText().trim().toLowerCase();
+    if (term.isEmpty()) {
+      refreshTable();
+      return;
+    }
+    // Filter the full list for this type by name:
+    List<Place> filtered = placeService.listPlacesByType(defaultType)
+            .stream()
+            .filter(p -> p.getName().toLowerCase().contains(term))
+            .collect(Collectors.toList());
+
+    placeTable.setItems(FXCollections.observableArrayList(filtered));
+    clearForm();
+  }
+
+  /** Clears the search box and reloads the full table */
+  @FXML
+  private void handleClearSearch() {
+    searchField.clear();
+    refreshTable();
   }
 
   @FXML

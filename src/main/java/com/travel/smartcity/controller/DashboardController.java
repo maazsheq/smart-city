@@ -147,6 +147,68 @@ public class DashboardController {
     dialog.showAndWait();
   }
 
+
+  @FXML
+  private void handleHotels(ActionEvent event) throws IOException {
+//    loadDialog(event, "/com/travel/smartcity/place-dialog.fxml", "Hotel Management");
+    openPlaceDialog(event, "Manage Hotels", "Hotel");
+  }
+
+
+  @FXML
+  private void handleParks(ActionEvent event) throws IOException {
+    openPlaceDialog(event, "Manage Parks", "Park");
+  }
+
+  @FXML
+  private void handleLibraries(ActionEvent event) throws IOException {
+    openPlaceDialog(event, "Manage Libraries", "Library");
+  }
+
+  @FXML
+  private void handleJobs() {
+
+  }
+  @FXML
+  private void handleDestinations(ActionEvent event) throws IOException {
+    openPlaceDialog(event, "Manage Destinations", "Destination");
+
+  }
+  @FXML
+  private void handleRestaurants(ActionEvent event) throws IOException {
+    openPlaceDialog(event, "Manage Restaurants", "Restaurant");
+  }
+
+
+
+
+
+  @FXML
+  private void viewBookings() {
+
+  }
+
+
+  private void openPlaceDialog(ActionEvent event, String title, String defaultType) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass()
+            .getResource("/com/travel/smartcity/place-dialog.fxml"));
+    Parent root = loader.load();
+
+    // 2) Get the controller and set the default type
+    PlaceManagementController ctrl = loader.getController();
+    ctrl.setDefaultType(defaultType);
+
+    // 3) Show as modal
+    Stage dialog = new Stage();
+    dialog.initModality(Modality.APPLICATION_MODAL);
+    dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+    dialog.setTitle(title);
+    dialog.setScene(new Scene(root));
+    dialog.setResizable(false);
+    dialog.showAndWait();
+  }
+
+
   @FXML
   private void goToViewPersonal() {
 

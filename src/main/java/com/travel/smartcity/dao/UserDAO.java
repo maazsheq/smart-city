@@ -32,6 +32,27 @@ public class UserDAO {
     return null;
   }
 
+  public User findByEmail(String email) {
+    String sql = "SELECT * FROM users WHERE email = ?";
+    try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+      ps.setString(1, email);
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          int id        = rs.getInt("id");
+          String user   = rs.getString("username");
+          String pass   = rs.getString("password");
+          String mail   = rs.getString("email");
+          boolean isAdmin = rs.getBoolean("is_admin");
+          return new User(id, user, pass, mail, isAdmin);
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
   public boolean create(User user) {
     String sql = "INSERT INTO users (username, password, email, is_admin) VALUES (?, ?, ?, ?)";
     try (Connection conn = DriverManager.getConnection(URL, USER, PASS);

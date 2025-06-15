@@ -21,15 +21,15 @@ public class BookingController {
 
   @FXML
   private void handleBooking() {
-    Booking b = new Booking(
-            /* id= */0,0,
-            placeField.getText(),
-            datePicker.getValue()
-    );
-    boolean ok = bookingService.book(b);
-    new Alert(ok ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR,
-            ok ? "Booked!" : "Booking failed.")
-            .showAndWait();
+//    Booking b = new Booking(
+//            /* id= */0,0,
+//            placeField.getText(),
+//            datePicker.getValue()
+//    );
+//    boolean ok = bookingService.book(b);
+//    new Alert(ok ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR,
+//            ok ? "Booked!" : "Booking failed.")
+//            .showAndWait();
   }
 
   @FXML

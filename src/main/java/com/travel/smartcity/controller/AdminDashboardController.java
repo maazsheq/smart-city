@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -30,6 +31,7 @@ public class AdminDashboardController {
   private void initialize() {
     User current = Session.getCurrentUser();
     boolean isAdmin = (current != null && current.isAdmin());
+//    manageUsersButton.setDisable(isAdmin);
     if (current != null) {
       usernameItem.setText("Username: " + current.getUsername());
       emailItem   .setText("Email: "    + current.getEmail());
@@ -61,7 +63,7 @@ public class AdminDashboardController {
 
   @FXML
   private void handleHotels(ActionEvent event) throws IOException {
-//    loadDialog(event, "/com/travel/smartcity/hotel-dialog.fxml", "Hotel Management");
+//    loadDialog(event, "/com/travel/smartcity/place-dialog.fxml", "Hotel Management");
     openPlaceDialog(event, "Manage Hotels", "Hotel");
   }
 
@@ -115,7 +117,7 @@ public class AdminDashboardController {
 
   private void openPlaceDialog(ActionEvent event, String title, String defaultType) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass()
-            .getResource("/com/travel/smartcity/hotel-dialog.fxml"));
+            .getResource("/com/travel/smartcity/place-dialog.fxml"));
     Parent root = loader.load();
 
     // 2) Get the controller and set the default type

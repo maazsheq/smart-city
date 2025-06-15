@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/20"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.travel.smartcity.controller.PackageManagementController"
+            prefWidth="600" prefHeight="500">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <!-- Top banner -->
+    <top>
+        <Label text="Manage Packages"
+               style="-fx-font-size:18px; -fx-font-weight:bold;">
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+        </Label>
+    </top>
+
+    <center>
+        <VBox spacing="10">
+
+            <!-- 1) Table of packages for the selected place -->
+            <TableView fx:id="packageTable" prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="colPkgId"       text="ID"         prefWidth="50"/>
+                    <TableColumn fx:id="colPkgDetails"  text="Details"    prefWidth="400"/>
+                    <TableColumn fx:id="colPrice"          text="Price"      prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <!-- 2) Form to add/update a package -->
+            <GridPane fx:id="addPackagePane" hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="80"/>
+                </columnConstraints>
+
+                <Label     text="Details:"           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextArea  fx:id="detailsField"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"
+                           prefRowCount="4"
+                           wrapText="true"/>
+                <Label     text="Price:"             GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="priceField"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- 3) CRUD Buttons -->
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button fx:id="addPackageBtn" text="Add Package"    onAction="#handleAddPackage"
+                        prefWidth="120"
+                        style="-fx-background-color:black; -fx-text-fill:white;"/>
+                <Button fx:id="updatePackageBtn" text="Update Package" onAction="#handleUpdatePackage"
+                        prefWidth="120"
+                        style="-fx-background-color:black; -fx-text-fill:white;"/>
+                <Button fx:id="deletePackageBtn" text="Delete Package" onAction="#handleDeletePackage"
+                        prefWidth="120"
+                        style="-fx-background-color:black; -fx-text-fill:white;"/>
+                <Button fx:id="closeBtn"
+                        text="Close"          onAction="#handleClose"
+                        prefWidth="120"
+                        style="-fx-background-color:black; -fx-text-fill:white;"/>
+
+                <!-- at bottom of your existing HBox of buttons -->
+                <Button fx:id="bookNowBtn"
+                        text="Book Now"
+                        onAction="#handleBookNow"
+                        style="-fx-background-color:forestgreen; -fx-text-fill:white;"/>
+
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

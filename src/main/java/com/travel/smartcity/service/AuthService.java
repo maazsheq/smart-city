@@ -40,5 +40,13 @@ public class AuthService {
     return null;
   }
 
+  public boolean isUsernameTaken(String username) {
+    return userDAO.findByUsername(username) != null;
+  }
+
+  public boolean isEmailTaken(String email) {
+    return userDAO.findByEmail(email) != null;
+  }
+
   // changePassword(User user, String newPass)...
 }

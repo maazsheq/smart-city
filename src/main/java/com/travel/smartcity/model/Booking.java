@@ -3,47 +3,47 @@ package com.travel.smartcity.model;
 import java.time.LocalDate;
 
 public class Booking {
-  private int id;
-  private int userId;
-  private String placeName;
-  private LocalDate date;
+  private int    id;
+  private int    userId;
+  private int    packageId;
+  private LocalDate bookingDate;
 
-  public Booking(int id, int userId, String placeName, LocalDate date) {
-    this.id = id;
-    this.userId = userId;
-    this.placeName = placeName;
-    this.date = date;
+  public Booking() { }
+
+  /** for inserts (no id yet) */
+  public Booking(int userId, int packageId, LocalDate bookingDate) {
+    this.userId      = userId;
+    this.packageId   = packageId;
+    this.bookingDate = bookingDate;
   }
 
-  public int getId() {
-    return id;
+  /** full constructor */
+  public Booking(int id, int userId, int packageId, LocalDate bookingDate) {
+    this.id          = id;
+    this.userId      = userId;
+    this.packageId   = packageId;
+    this.bookingDate = bookingDate;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+  public int getId()                { return id; }
+  public void setId(int id)         { this.id = id; }
 
-  public int getUserId() {
-    return userId;
-  }
+  public int getUserId()            { return userId; }
+  public void setUserId(int userId) { this.userId = userId; }
 
-  public void setUserId(int userId) {
-    this.userId = userId;
-  }
+  public int getPackageId()             { return packageId; }
+  public void setPackageId(int packageId) { this.packageId = packageId; }
 
-  public String getPlaceName() {
-    return placeName;
-  }
+  public LocalDate getBookingDate()              { return bookingDate; }
+  public void     setBookingDate(LocalDate d)    { this.bookingDate = d; }
 
-  public void setPlaceName(String placeName) {
-    this.placeName = placeName;
-  }
-
-  public LocalDate getDate() {
-    return date;
-  }
-
-  public void setDate(LocalDate date) {
-    this.date = date;
+  @Override
+  public String toString() {
+    return "Booking{" +
+            "id=" + id +
+            ", userId=" + userId +
+            ", packageId=" + packageId +
+            ", bookingDate=" + bookingDate +
+            '}';
   }
 }
