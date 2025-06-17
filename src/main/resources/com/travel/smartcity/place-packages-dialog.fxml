@@ -70,7 +70,7 @@
 
                 <!-- at bottom of your existing HBox of buttons -->
                 <Button fx:id="bookNowBtn"
-                        text="Book Now"
+                        text="Book"
                         onAction="#handleBookNow"
                         style="-fx-background-color:forestgreen; -fx-text-fill:white;"/>
 

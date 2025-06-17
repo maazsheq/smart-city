@@ -47,6 +47,7 @@ public class PackageManagementController {
     boolean isAdmin = (current != null && current.isAdmin());
 
     // Show/hide all but Back
+    bookNowBtn.setVisible(!isAdmin);
     addPackageBtn           .setVisible(isAdmin);
     updatePackageBtn        .setVisible(isAdmin);
     deletePackageBtn        .setVisible(isAdmin);
